@@ -95,16 +95,19 @@ function App() {
     const currentIndex = songs.findIndex(song => song.id === currentSong.id);
     const nextIndex = (currentIndex + 1) % songs.length;
     setCurrentSong(songs[nextIndex]);
+    setCurrentTime(0); // Reset the currentTime to 0 when changing the song
   };
 
   const prevSong = () => {
     const currentIndex = songs.findIndex(song => song.id === currentSong.id);
     const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
     setCurrentSong(songs[prevIndex]);
+    setCurrentTime(0); // Reset the currentTime to 0 when changing the song
   };
 
   const handleSongClick = song => {
     setCurrentSong(song);
+    setCurrentTime(0); // Reset the currentTime to 0 when changing the song
   };
 
   const handleSearch = (query) => {
@@ -213,10 +216,10 @@ function App() {
                 <span className="duration">{formatTime(duration)}</span>
               </div>
               <div className="controls">
-                <button className="clo1"><FaEllipsisH /></button> { }
+                <button className="clo1"><FaEllipsisH /></button>
                 <button onClick={prevSong}>&laquo;</button>
                 <button className="clo2" onClick={playPause}>
-                  {isPlaying ? <FaPause /> : <FaPlay />} { }
+                  {isPlaying ? <FaPause /> : <FaPlay />}
                 </button>
                 <button onClick={nextSong}>&raquo;</button>
                 <button
@@ -225,9 +228,8 @@ function App() {
                   onMouseEnter={() => setIsVolumeControlActive(true)}
                   onMouseLeave={() => setIsVolumeControlActive(false)}
                 >
-                  {isMuted ? <FaVolumeMute /> : <FaVolumeUp />} { }
+                  {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
                 </button>
-
               </div>
             </>
           )}
